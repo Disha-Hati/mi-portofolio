@@ -1,5 +1,22 @@
-import React from "react";
+import React,{ useState,useEffect} from "react";
+import sanityClient from "../client";
 
-export default function About(){
-    return <h1>ABOUT PAGE!</h1>
+export default function Post(){
+    const[postData,setPost]=useState(null);
+
+    useEffect(() =>{
+        sanityClient
+        .fetch(`*[_type=="post"]{
+            title,
+            slug,
+            mainImage{
+                asset->{
+                    _id,
+                    url
+                },
+                alt
+            }
+        }`)
+    })
+    return()
 }
